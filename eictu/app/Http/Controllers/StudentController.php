@@ -93,10 +93,23 @@ class StudentController extends Controller
 //            $table->integer('student_id');
 //        });
 
-        Schema::table('newsfeed', function ($table) {
-            $table->string('content');
+         Schema::table('newsfeed', function ($table) {
+            $table->integer('type')->nullable();
         });
-       // DB::statement('ALTER TABLE newsfeed MODIFY COLUMN content text');
+
+        $columns1 = Schema::getColumnListing('newsfeed'); // users table
+        dd($columns1);
+        Schema::table('teacher', function ($table) {
+            $table->string('avatar')->nullable();
+        });
+
+        $columns2 = Schema::getColumnListing('teacher'); // users table
+        dd($columns2);
+
+        DB::statement('ALTER TABLE newsfeed MODIFY COLUMN content text');
+//
+        $columns = Schema::getColumnListing('newsfeed'); // users table
+        dd($columns);
     }
 
     //add
